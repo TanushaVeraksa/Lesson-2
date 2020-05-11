@@ -31,34 +31,32 @@ console.log(arrayOfFruitsCount);
 
 let readers = [{
     name: 'Anna',
-    books: ['Harry Potter', 'War and Peace']
+    books: ['Harry Potter', 'War and Peace'],
 }, {
     name: 'Tanya',
-    books: ['Harry Potter', 'Sherlock Holmes', 'Jane Eyre']
+    books: ['Harry Potter', 'Sherlock Holmes', 'Jane Eyre'],
 }, {
     name: 'Sasha',
-    books: ['To Kill a Mockingbird', 'Diary of a Pilgrimage', 'Harry Potter']
+    books: ['To Kill a Mockingbird', 'Diary of a Pilgrimage', 'Harry Potter'],
 }, {
     name: 'Lena',
-    books: ['The Cat in the Hat', 'Jane Eyre', 'Dracula']
+    books: ['The Cat in the Hat', 'Jane Eyre', 'Dracula'],
 }, {
     name: 'Misha',
-    books: ['Dracula', 'Diary of a Pilgrimage', 'The Million Pound Bank Note']
-}]
+    books: ['Dracula', 'Diary of a Pilgrimage', 'The Million Pound Bank Note'],
+}];
 
 
-
-function showFavoriteBooks(arr) {
-    let allBooks = arr.reduce(function(prev, curr) {
-        return [...prev,...curr.books];
-      }, []);
-    return allBooks;
+function getBooks(arr) {
+    return arr.reduce((acc, arrItem) => {
+        let books = arrItem.books;
+        for(let i = 0; i< books.length; i++) 
+            if(acc.indexOf(books[i]) === -1) 
+                acc.push(books[i]);
+            
+        return acc;
+    }, []);
 }
 
-let listBooks = showFavoriteBooks(readers);
 
-let uniqueArray = listBooks.filter((elem, index, array) => array.indexOf(elem) == index);
-
-console.log(uniqueArray);
-
-
+console.log(getBooks(readers));
